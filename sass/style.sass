@@ -17,7 +17,7 @@ body
   align-items: center
 
   @include u.responsive
-    padding: 150px 10px 50px 0
+    padding: 150px 0 50px 0
     height: 100%
 
   .openbox.sidenav
@@ -230,6 +230,9 @@ body
   margin: 25px auto
   display: flex
 
+  .social-single
+    margin: 0 5px
+
 
 .menu.social-btns
   position: absolute
@@ -316,7 +319,10 @@ body
   @include u.responsive
     margin: 0 
     bottom: 150px
-    left: 70px
+    left: 7%
+
+  @include u.responsive-sm
+    left: 5%
 
   .darkmode-stats
     margin: 0 15px
@@ -326,6 +332,9 @@ body
     @include u.responsive
       margin: 0 25px
       font-size: 28px
+
+    @include u.responsive-sm
+      left: 22px
 
   #switch-theme
     width: 0
@@ -368,7 +377,7 @@ body
         border-radius: 50%
         top: 0px
         left: -2px
-        transition: .5s
+        transition: .3s
 
         @include u.responsive
           width: 25px
