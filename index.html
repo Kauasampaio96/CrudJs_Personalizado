@@ -34,7 +34,7 @@
       <div id="iconbox" class="icon-box">
 
         <div id="icon-single" class="icon-single">
-          <a class="sidenav-icon" href="index.html"><i class="fa-solid fa-house"></i></a> <a class="linkintext" href="index.html"> <p id="icon-single-text">Home</p></a>
+          <a class="sidenav-icon" href="index.html"><i class="fa-solid fa-database"></i></a> <a class="linkintext" href="index.html"> <p id="icon-single-text">Banco de Dados</p></a>
         </div>
 
         <div id="icon-single" class="icon-single">
@@ -56,7 +56,107 @@
         <a id="ss-email" class="social-single" href="mailto:kaua.sampaio.dev@gmail.com" target="_blank"><i class="fa-solid fa-envelope"></i></a>
       </div>
 
+      <div id="darkmode-box" class="darkmode-box">
+
+        <div class="darkmode-stats">
+          <i class="fa-solid fa-sun"></i>
+        </div>
+
+        <label for="switch-theme">
+          <input type="checkbox" id="switch-theme" onchange="darkLight()"> <span class="slide"></span>
+        </label>
+
+        <div class="darkmode-stats">
+          <i class="fa-solid fa-moon"></i>
+        </div>
+
+      </div><!--darkmode-box-->
+
     </div><!--sidenav-->
+
+    <div id="modal" class="modal">
+      <i id="closebtn" class="fa-solid fa-xmark"></i>
+      <h1>Preencha os campos para <b>Cadastrar um cliente</b></h1>
+
+      <form id="form" class="modal-form">
+        <div class="input-box">
+          <input required type="text" id="nome" class="modal-field">
+          <span>Nome do Cliente</span>
+        </div>
+
+        <div class="input-box">
+          <input required type="text" id="cpf" class="modal-field">
+          <span>Cpf do cliente</span>
+        </div>
+
+        <div class="input-box">
+          <input data-index="new" required type="email" id="email" class="modal-field" >
+          <span>E-mail do Cliente</span>
+        </div>
+
+        <div class="input-box">
+          <input required type="text" id="celular" class="modal-field">
+          <span>Celular do Cliente</span>
+        </div>
+
+
+        <div class="input-box">
+          <input required type="text" id="cidade" class="modal-field">
+          <span>Endereço do Cliente</span>
+        </div>
+
+        <button id="submitbtn" class="formbtn submit-btn" type="submit">Salvar</button>
+        <button id="cancelbtn" class="formbtn cancel-btn">Cancelar</button>
+      </form>
+    </div>
+
+    <div class="section-box index">
+      <h1>Banco de Dados</h1>
+
+      <div class="database-box">
+        <button id="createbtn" class="create database-btn">Cadastrar cliente</button>
+        <table class="database">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Cpf</th>
+              <th>E-mail</th>
+              <th>Telefone</th>
+              <th>Endereço</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+        
+          <tbody>
+          
+            <tr>
+              <td data-label="Nome:">Kauã</td>
+              <td data-label="Cpf:">093.041.243-52</td>
+              <td data-label="E-mail:">kauasampaio33@hotmail.com</td>
+              <td data-label="Telefone:">88 996009602</td>
+              <td data-label="Endereço:">Manoel ESTORGIO</td>
+              <td data-label="Ação:"><button type="button" class="edit database-btn" id="edit-${index}">Editar</button>
+                <button type="button" class="delete database-btn" id="delete-${index}">Excluir</button></td>
+            </tr>
+
+            <tr>
+              <td data-label="Nome:">Kauã</td>
+              <td data-label="Cpf:">093.041.243-52</td>
+              <td data-label="E-mail:">kauasampaio33@hotmail.com</td>
+              <td data-label="Telefone:">88 996009602</td>
+              <td data-label="Endereço:">Manoel ESTORGIO</td>
+              <td data-label="Ação:"><button type="button" class="edit database-btn" id="edit-${index}">Editar</button>
+                <button type="button" class="delete database-btn" id="delete-${index}">Excluir</button></td>
+            </tr>
+
+          </tbody>
+            
+        </table>
+
+
+      </div>
+
+    </div><!--Section box-->
 
 
   </div><!--Main-->

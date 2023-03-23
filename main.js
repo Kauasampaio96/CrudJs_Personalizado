@@ -63,8 +63,7 @@ const abrirMenuMbl = () => {
   })
 
   darkmodeBox.style.display='flex'
-  darkmodeBox.style.display='flex'
-
+  
   iconBox.style.display = 'flex'
 
   return
@@ -90,6 +89,7 @@ const fecharMenu = () => {
 
   darkmodeBox.style.display='none'
 
+  socialButtons.style.position = 'absolute'
   socialButtons.style.display = 'none'
 
   sidenavBox.classList.remove('openbox')
@@ -125,7 +125,7 @@ sidenavButton.addEventListener('click', () => {
   var pageWidth = window.innerWidth
 
   if (sidenavButton.dataset.status === 'close'){
-    if(pageWidth > 1060){
+    if(pageWidth > 1100){
       abrirMenu()
     }
     else{
@@ -134,7 +134,7 @@ sidenavButton.addEventListener('click', () => {
     
   } 
   else {
-    if(pageWidth > 1060){
+    if(pageWidth > 1100){
       fecharMenu()
     }
     else{
@@ -145,8 +145,23 @@ sidenavButton.addEventListener('click', () => {
 })
 
 
+//CRUD 
+
+const openModal = () => {
+  document.getElementById('modal').classList.add('active')
+}
+
+const closeModal = () => {
+  document.getElementById('modal').classList.remove('active')
+}
 
 
 
 
 
+
+document.getElementById('closebtn')
+        .addEventListener('click', closeModal)
+
+document.getElementById('createbtn')
+        .addEventListener('click', openModal)

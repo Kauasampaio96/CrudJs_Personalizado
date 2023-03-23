@@ -134,7 +134,10 @@ body
     color: var(--primary)
 
 
-//Configurações
+//Section 
+
+.index.section-box
+  max-width: 1350px
 
 .section-box
   width: 87%
@@ -148,6 +151,7 @@ body
   @include u.responsive
     width: 95%
     padding: 25px
+    margin: 0
 
   h1
     font-size: 2rem
@@ -236,7 +240,7 @@ body
 
 .menu.social-btns
   position: absolute
-  bottom: 75px
+  bottom: 50px
 
   @include u.responsive
     margin-top: 110px
@@ -246,9 +250,8 @@ body
     margin: 0 8px
 
     @include u.responsive
-      font-size: 28px
       padding: 10px 15px
-      margin: 0 18px
+      margin: 0 8px
 
     @include u.responsive-sm
       font-size: 17px
@@ -342,10 +345,10 @@ body
     opacity: 0
 
     &:checked + .slide:before
-      
+      transform: translateX(30px)
 
-       @include u.responsive
-         transform: translateX(40px)
+      @include u.responsive
+        transform: translateX(40px)
 
     
   
@@ -375,13 +378,266 @@ body
         background-color: white
         box-shadow: rgba(0, 0, 0, 0.35) 0px 10px 20px
         border-radius: 50%
-        top: 0px
+        top: -2px
         left: -2px
         transition: .3s
 
         @include u.responsive
           width: 25px
           height: 25px
+
+
+// Database
+
+.index.section-box
+  @include u.responsive
+    max-width: 550px
+    padding: 15px
+
+  .database-btn
+    border: 0
+    padding: 10px 25px
+    border-radius: 5px
+    color: var(--gray)
+    cursor: pointer
+    background-color: var(--light-gray)
+    transition: .3s
+
+  .create.database-btn
+    margin-bottom: 16px
+    font-size: 1.125rem
+    background-color: var(--primary)
+    color: var(--permanent-light)
+    
+
+    &:hover
+      background-color: #8193fb
+
+
+  .edit.database-btn
+    margin: 0 5px 0 0
+    font-weight: bold
+
+    @include u.responsive
+      margin: 0 10px 0 0 
+      font-size: 1rem
+      background-color: var(--yellow)
+      color: rgba(0, 0, 0, 0.7)
+
+    &:hover
+      background-color: #ffe83d
+
+  .delete.database-btn
+    margin: 0 5px 0 0
+    font-weight: bold
+
+    @include u.responsive
+      margin: 0 10px 0 0 
+      font-size: 1rem
+      background-color: #fe5050
+      color: rgba(0, 0, 0, 0.7)
+
+    &:hover
+      background-color: #f96e6e
+
+
+  .database
+    width: 100%
+    user-select: none
+    text-align: left
+    border-collapse: collapse
+
+    @include u.responsive
+      display: block
+      width: 100%
+
+    thead
+      @include u.responsive
+        display: none
+
+    tbody
+      @include u.responsive
+        display: block
+        width: 100%
+
+
+    th
+      height: 50px
+      background-color: var(--primary)
+      padding-left: 20px
+      font-weight: 500
+      color: var(--permanent-light)
+      margin: 0 5px
+      border: 3px solid var(--light)
+
+      &:last-child
+        padding: 0
+        min-width: 140px
+        text-align: center
+
+    tr
+      transition: .3s
+      border-bottom: 1px solid #76767644
+      
+      @include u.responsive
+        border: 1px solid var(--light-gray)
+        padding: 10px
+        margin-bottom: 15px
+        display: block
+        width: 100%
+
+    td
+      height: 50px
+      padding-left: 20px
+      color: var(--gray)
+
+      @include u.responsive
+        margin: 5px 0
+        text-align: right
+        padding-left: 25%
+        position: relative
+        display: block
+        width: 100%
+        display: flex
+        align-items: center
+        justify-content: flex-end
+
+        &:before
+          content: attr(data-label)
+          position: absolute
+          left: 0
+          width: 50%
+          padding-left: 0
+          font-weight: bold
+          text-align: left
+
+        
+
+      &:last-child
+        padding: 0
+        min-width: 140px
+        text-align: center
+
+        @include u.responsive
+          text-align: right
+
+//Modal
+
+.active.modal
+  display: block
+
+.modal
+  width: 75%
+  max-width: 1000px
+  text-align: center
+  position: absolute
+  background: var(--light-modal)
+  padding: 25px 30px
+  border-radius: 15px
+  box-shadow: rgba(100, 100, 111, 0.488) 0px 7px 29px 0px
+  display: none
+
+  .fa-xmark
+    position: absolute
+    top: 10px
+    right: 25px
+    font-size: 1.5rem
+    color: var(--black)
+    transition: .5s
+    cursor: pointer
+
+    &:hover
+      color: #fc5b5b
+
+  h1
+    font-size: 1.8rem
+    font-family: 'Playfair Display', sans-serif
+    color: var(--black)
+
+    b
+      font-family: 'Playfair Display', sans-serif
+      color: var(--light-primary)
+  
+  .modal-form
+    width: 90%
+    text-align: left
+    display: flex
+    align-items: center
+    flex-wrap: wrap
+    margin: 35px auto 50px auto
+
+    .input-box
+      display: inline-block
+      position: relative
+      width: 250px
+      margin: 10px
+
+      input
+        width: 100%
+        padding: 10px
+        border: 1px solid var(--light-black)
+        background: var(--light)    
+        border-radius: 5px
+        outline: none
+        color: var(--black)
+        font-size: 1rem
+        transition: .5s
+
+        &:valid ~ span, &:focus ~ span
+          color: var(--primary)
+          transform: translateX(10px) translateY(-7px)
+          font-size: 0.75rem
+          padding: 0 5px
+          background: var(--light)
+          border-left: 1px solid var(--primary)
+          border-right: 1px solid var(--primary)
+          letter-spacing: 0.1rem
+        
+        &:valid, &:focus
+          border: 1px solid var(--primary)
+      
+      span
+        position: absolute
+        left: 0
+        padding: 10px
+        pointer-events: none
+        font-size: 1rem
+        color: var(--light-black)
+        text-transform: uppercase
+        transition: .3s
+
+    .formbtn
+      border: 0
+      padding: 10px 25px
+      border-radius: 5px
+      color: var(--gray)
+      cursor: pointer
+      background-color: var(--light-gray)
+      transition: .3s
+      margin: 0 10px
+      position: relative
+      bottom: -75px
+      right: -75px
+      font-weight: bold
+
+    .submit-btn
+      background-color: #4BB543
+      
+      &:hover
+        background-color: #66c55f
+
+    .cancel-btn
+      background-color: #fe5050
+      
+      &:hover
+        background-color: #f96e6e
+      
+      
+
+    
+
+
+
 
   
 
