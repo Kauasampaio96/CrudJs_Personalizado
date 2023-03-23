@@ -1,0 +1,300 @@
+@use 'utilities' as u
+@use 'variables' as v
+
+@include u.reset
+
+body
+  height: 100vh
+  background-color: var(--background)
+
+  @include u.responsive
+    height: 100%
+
+.main
+  display: flex
+  justify-content: center
+  height: 100%
+  align-items: center
+
+  @include u.responsive
+    padding: 150px 10px 50px 0
+    height: 100%
+
+  .openbox.sidenav
+    @extend %sidenav-format
+    padding: 50px 25px
+    width: 350px
+    align-items: flex-start
+
+  .openboxmbl.sidenav
+    @extend %sidenav-format
+    height: 425px
+    width: 100vw
+    align-items: flex-end
+    padding: 27px 25px
+    
+
+
+  .sidenav
+    @extend %sidenav-format
+    padding: 50px 0 0 0
+    transition: .2s
+
+    @include u.responsive
+      width: 100vw
+      height: 100px
+      flex-direction: row-reverse
+      justify-content: flex-start
+      align-items: center
+      padding: 0 30px
+      top: 0
+
+    .menu-icon
+      text-align: center
+      font-size: 36px
+      color: var(--gray)
+    
+
+  
+
+    .icon-box
+      display: flex
+      flex-direction: column
+      align-items: center
+      margin: 30px 0 0 0
+
+      @include u.responsive
+        flex-direction: flex    
+        align-items: flex-start
+        width: 90%
+        margin: 0 50px 0 0 
+
+      .icon-single
+        margin: 15px 0
+        width: 100%
+        display: flex
+        align-items: center
+        transition: .3s
+
+        @include u.responsive
+          margin: 0 15px
+          display: none
+
+        &:hover
+          cursor: pointer
+          background-color: var(--light-primary)
+          border-radius: 15px
+
+          .sidenav-icon
+            background-color: var(--primary)
+
+            i
+              color: var(--light)
+          
+          p
+            color: var(--primary)
+            text-decoration: underline
+          
+            
+      
+
+
+        p
+          display: none
+          margin-left: 15px
+          margin-right: 10px
+
+          @include u.responsive
+            font-size: 1.250rem
+
+        .sidenav-icon
+          display: inline-block
+          width: 37px
+          text-align: center
+          color: var(--gray)
+          background-color: var(--light-gray)
+          border-radius: 8px
+          padding: 5px 6px
+          transition: .3s
+          font-size: 24px
+          
+          i
+            transition: .3s
+            
+
+          &:hover
+            background-color: var(--primary) 
+            
+            i
+              color: var(--light)
+
+.linkintext
+  text-decoration: none
+  color: #000
+  &:hover
+    color: var(--primary)
+
+
+//Configurações
+
+.section-box
+  width: 87%
+  max-width: 980px
+  margin-left: 100px
+  padding: 25px 40px
+  border-radius: 15px
+  background-color: var(--light)
+  box-shadow: rgba(100, 100, 111, 0.324) 0px 7px 29px 0px
+
+  @include u.responsive
+    width: 95%
+    padding: 25px
+
+  h1
+    font-size: 2rem
+    margin-bottom: 36px
+    font-family: 'Playfair Display', sans-serif
+    color: var(--primary)
+
+  .flex-box
+    display: flex
+    justify-content: space-between
+    
+    @include u.responsive
+      flex-direction: column
+      align-items: center
+
+    &-image
+      width: 30%
+
+      @include u.responsive
+        display: none
+        
+
+      img
+        border-radius: 10px
+        cursor: pointer
+        filter: grayscale(90%)
+        transition: .5s
+        object-fit: cover
+
+        @include u.responsive
+          width: 90%
+
+        &:hover
+          filter: grayscale(0)
+          box-shadow: rgba(17, 12, 46, 0.258) 0px 48px 100px 0px
+          
+
+    &-text
+      text-align: justify
+      width: 60%
+
+      @include u.responsive
+        width: 100%
+
+      .text-title
+        font-size: 1.70rem
+        font-weight: 500
+        text-align: left
+        margin-bottom: 25px
+
+        b
+          color: var(--primary)
+          font-weight: 800
+
+      .text-content
+        margin-bottom: 16px
+        font-size: 1.125rem
+
+        &:last-of-type
+          margin-top: 35px
+          
+      
+
+
+
+  @include u.responsive
+    margin: 0
+
+
+.menu.social-btns
+  position: absolute
+  bottom: 75px
+
+  @include u.responsive
+    margin-top: 50px
+  
+  .social-single
+    font-size: 19px
+    margin: 0 8px
+
+    @include u.responsive
+      font-size: 28px
+      padding: 10px 15px
+      margin: 0 18px
+
+    @include u.responsive-sm
+      font-size: 17px
+      margin: 0 10px
+
+.social-btns
+  display: none
+  margin: 25px auto
+  flex-wrap: wrap
+
+
+  .social-single
+    font-size: 24px
+    background-color: var(--light-gray)
+    padding: 10px 14px
+    border-radius: 50%
+    margin: 0 8px
+    color: var(--gray)
+    transition: .3s
+
+    &:first-of-type
+      margin: 0 8px 0 0
+    
+    @include u.responsive
+      font-size: 19px
+
+  #ss-wpp
+    &:hover
+      background-color: #25D366
+      color: white
+
+  #ss-wpp
+    &:hover
+      background-color: #25D366
+      color: white
+
+  #ss-ins
+    &:hover
+      background-color: #E1306C
+      color: white
+
+  #ss-lin
+    &:hover
+      background-color: #0077b5
+      color: white
+
+  #ss-git
+    &:hover
+      background-color: #333
+      color: white
+
+  #ss-email
+    &:hover
+      background-color: #c71610
+      color: white
+
+
+
+
+
+
+          
+          
+
+    

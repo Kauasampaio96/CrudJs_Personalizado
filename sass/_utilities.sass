@@ -1,0 +1,29 @@
+// Mixins
+@mixin reset
+  *
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+    font-family: 'Inter', sans-serif
+
+@mixin responsive
+  @media (max-width: 1060px)
+    @content
+
+@mixin responsive-sm
+  @media (max-width: 450px)
+    @content
+
+// Placeholder Selectors
+%sidenav-format
+  width: 100px
+  height: 100vh
+  background: white
+  display: flex
+  flex-direction: column
+  align-items: center
+  position: absolute
+  left: 0
+  z-index: 10
+  box-shadow: rgba(100, 100, 111, 0.198) 0px 7px 29px 0px
+  
