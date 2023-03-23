@@ -28,7 +28,7 @@ body
 
   .openboxmbl.sidenav
     @extend %sidenav-format
-    height: 425px
+    height: 500px
     width: 100vw
     align-items: flex-end
     padding: 27px 25px
@@ -63,8 +63,7 @@ body
       align-items: center
       margin: 30px 0 0 0
 
-      @include u.responsive
-        flex-direction: flex    
+      @include u.responsive 
         align-items: flex-start
         width: 90%
         margin: 0 50px 0 0 
@@ -82,17 +81,17 @@ body
 
         &:hover
           cursor: pointer
-          background-color: var(--light-primary)
+          background-color: var(--bg-light-primary)
           border-radius: 15px
 
           .sidenav-icon
             background-color: var(--primary)
 
             i
-              color: var(--light)
+              color: var(--permanent-light)
           
           p
-            color: var(--primary)
+            color: var(--invert-primary)
             text-decoration: underline
           
             
@@ -126,11 +125,11 @@ body
             background-color: var(--primary) 
             
             i
-              color: var(--light)
+              color: var(--permanent-light)
 
 .linkintext
   text-decoration: none
-  color: #000
+  color: var(--black)
   &:hover
     color: var(--primary)
 
@@ -154,7 +153,7 @@ body
     font-size: 2rem
     margin-bottom: 36px
     font-family: 'Playfair Display', sans-serif
-    color: var(--primary)
+    color: var(--light-primary)
 
   .flex-box
     display: flex
@@ -198,17 +197,26 @@ body
         font-weight: 500
         text-align: left
         margin-bottom: 25px
+        color: var(--black)
 
         b
-          color: var(--primary)
+          color: var(--light-primary)
           font-weight: 800
 
       .text-content
         margin-bottom: 16px
         font-size: 1.125rem
+        color: var(--black)
 
         &:last-of-type
           margin-top: 35px
+        
+        .portfolio-link
+          transition: .3s
+          color: var(--black)
+
+          &:hover
+            color: var(--invert-primary)
           
       
 
@@ -219,7 +227,7 @@ body
 
 
 .about.social-btns
-  margin: 45px auto
+  margin: 25px auto
   display: flex
 
 
@@ -228,7 +236,7 @@ body
   bottom: 75px
 
   @include u.responsive
-    margin-top: 50px
+    margin-top: 110px
   
   .social-single
     font-size: 19px
@@ -295,6 +303,78 @@ body
       background-color: #c71610
       color: white
 
+
+//Darkmode
+
+.darkmode-box
+  display: none
+  align-items: center
+  position: absolute
+  bottom: 180px
+  margin: 0 20%
+
+  @include u.responsive
+    margin: 0 
+    bottom: 150px
+    left: 70px
+
+  .darkmode-stats
+    margin: 0 15px
+    font-size: 22px
+    color: var(--invert-primary)
+
+    @include u.responsive
+      margin: 0 25px
+      font-size: 28px
+
+  #switch-theme
+    width: 0
+    height: 0
+    opacity: 0
+
+    &:checked + .slide:before
+      
+
+       @include u.responsive
+         transform: translateX(40px)
+
+    
+  
+  label
+    display: block
+    height: 15px
+    width: 45px
+    position: relative
+    cursor: pointer
+
+    @include u.responsive
+      height: 25px
+      width: 60px
+
+    .slide
+      position: absolute
+      width: 100%
+      height: 100%
+      background-color: var(--light-gray)
+      border-radius: 10px 
+
+      &:before
+        position: absolute
+        content: ''
+        height: 20px
+        width: 20px
+        background-color: white
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 10px 20px
+        border-radius: 50%
+        top: 0px
+        left: -2px
+        transition: .5s
+
+        @include u.responsive
+          width: 25px
+          height: 25px
+
+  
 
 
 

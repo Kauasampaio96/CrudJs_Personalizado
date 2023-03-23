@@ -4,16 +4,21 @@ const iconBox = document.getElementById('iconbox')
 const iconSingle = document.querySelectorAll('#icon-single')
 const iconSingleText = document.querySelectorAll('#icon-single-text')
 const socialButtons = document.getElementById('socialbtns')
+const switchButton = document.getElementById('switch-theme')
+const darkmodeBox = document.getElementById('darkmode-box')
+const html = document.querySelector('html')
+
+const darkLight = () => {
+  html.classList.toggle('dark-mode')
+}
 
 
 const abrirMenu = () => {
   sidenavBox.classList.add('openbox')
 
   sidenavButton.innerHTML = '<i class="fa-regular fa-circle-xmark"></i>'
-  sidenavButton.style.color = '#EC3652'
+  sidenavButton.style.color = 'var(--red)'
   sidenavButton.dataset.status = 'open'
-
-  socialButtons.style.display = 'flex'
 
   iconBox.style.display = 'flex'
 
@@ -26,6 +31,10 @@ const abrirMenu = () => {
     element.style.display='block'
   })
 
+  socialButtons.style.display = 'flex'
+
+  darkmodeBox.style.display='flex'
+
   return
   
 }
@@ -35,10 +44,10 @@ const abrirMenuMbl = () => {
   sidenavBox.classList.add('openboxmbl')
 
   sidenavButton.innerHTML = '<i class="fa-regular fa-circle-xmark"></i>'
-  sidenavButton.style.color = '#EC3652'
+  sidenavButton.style.color = 'var(--red)'
   sidenavButton.dataset.status = 'open'
 
-  iconBox.style.display = 'flex'
+  
 
   socialButtons.style.display = 'flex'
   socialButtons.style.position = 'static'
@@ -52,6 +61,11 @@ const abrirMenuMbl = () => {
   iconSingleText.forEach(element => {
     element.style.display='block'
   })
+
+  darkmodeBox.style.display='flex'
+  darkmodeBox.style.display='flex'
+
+  iconBox.style.display = 'flex'
 
   return
   
@@ -68,13 +82,15 @@ const fecharMenu = () => {
     element.style.display='none'
   })
 
-  socialButtons.style.display = 'none'
-
   sidenavButton.dataset.status = 'close'
 
   sidenavButton.innerHTML = '<i  class="fa-solid fa-bars-staggered"></i>'
 
   sidenavButton.style.color = 'var(--gray)'
+
+  darkmodeBox.style.display='none'
+
+  socialButtons.style.display = 'none'
 
   sidenavBox.classList.remove('openbox')
 
@@ -87,8 +103,6 @@ const fecharMenuMbl = () => {
 
   socialButtons.style.display = 'none'
   
-  iconBox.style.display = 'none'
-  
   sidenavButton.dataset.status = 'close'
 
   sidenavButton.innerHTML = '<i  class="fa-solid fa-bars-staggered"></i>'
@@ -96,6 +110,10 @@ const fecharMenuMbl = () => {
   sidenavButton.style.color = 'var(--gray)'
 
   sidenavBox.classList.remove('openboxmbl')
+
+  darkmodeBox.style.display='none'
+
+  iconBox.style.display = 'none'
 
   return
   
