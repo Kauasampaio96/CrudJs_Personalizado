@@ -140,7 +140,7 @@ body
   max-width: 1350px
 
 .section-box
-  width: 87%
+  width: 90%
   max-width: 980px
   margin-left: 100px
   padding: 25px 40px
@@ -408,6 +408,29 @@ body
     font-size: 1.125rem
     background-color: var(--primary)
     color: var(--permanent-light)
+
+    b
+      display: none
+
+      @include u.responsive
+        display: block
+        font-size: 28px
+        color: var(--permanent-light)
+    
+    p
+      @include u.responsive
+        display: none
+
+    @include u.responsive
+     position: fixed
+     bottom: 50px
+     left: 30px
+     z-index: 9
+     border-radius: 50%
+     padding: 30px 40px
+      
+    
+    
     
 
     &:hover
@@ -470,6 +493,9 @@ body
       margin: 0 5px
       border: 3px solid var(--light)
 
+      &:first-child
+        padding-left: 5px
+
       &:last-child
         padding: 0
         min-width: 140px
@@ -490,6 +516,7 @@ body
       height: 50px
       padding-left: 20px
       color: var(--gray)
+      font-size: 0.95rem
 
       @include u.responsive
         margin: 5px 0
@@ -515,7 +542,7 @@ body
 
       &:last-child
         padding: 0
-        min-width: 140px
+        min-width: 200px
         text-align: center
 
         @include u.responsive
@@ -531,11 +558,15 @@ body
   max-width: 1000px
   text-align: center
   position: absolute
+  z-index: 10
   background: var(--light-modal)
   padding: 25px 30px
   border-radius: 15px
   box-shadow: rgba(100, 100, 111, 0.488) 0px 7px 29px 0px
   display: none
+
+  @include u.responsive
+    width: 95%
 
   .fa-xmark
     position: absolute
@@ -546,6 +577,10 @@ body
     transition: .5s
     cursor: pointer
 
+    @include u.responsive
+      font-size: 2rem
+      top: 20px
+
     &:hover
       color: #fc5b5b
 
@@ -554,22 +589,31 @@ body
     font-family: 'Playfair Display', sans-serif
     color: var(--black)
 
+    @include u.responsive
+      font-size: 1.5rem
+      margin-top: 50px
+
     b
       font-family: 'Playfair Display', sans-serif
       color: var(--light-primary)
   
   .modal-form
-    width: 90%
+    width: 60%
     text-align: left
     display: flex
     align-items: center
+    justify-content: center
     flex-wrap: wrap
     margin: 35px auto 50px auto
+
+    @include u.responsive
+      width: 100%
+
 
     .input-box
       display: inline-block
       position: relative
-      width: 250px
+      width: 100%
       margin: 10px
 
       input
@@ -608,29 +652,35 @@ body
 
     .formbtn
       border: 0
-      padding: 10px 25px
+      padding: 10px 15px
       border-radius: 5px
-      color: var(--gray)
+      color: var(--permanent-light)
       cursor: pointer
-      background-color: var(--light-gray)
+      background-color: var(--primary)
       transition: .3s
-      margin: 0 10px
-      position: relative
-      bottom: -75px
-      right: -75px
-      font-weight: bold
+      margin: 30px 20px 0
+      font-weight: regular
+      font-size: 1.125rem
 
-    .submit-btn
-      background-color: #4BB543
-      
-      &:hover
-        background-color: #66c55f
+      @include u.responsive
+        margin: 30px 10px 0
 
-    .cancel-btn
-      background-color: #fe5050
-      
+      i
+        margin-right: 8px
+
+    .submit-btn.formbtn
       &:hover
-        background-color: #f96e6e
+        background-color: #475bcf
+
+    .cancel-btn.formbtn
+      background: var(--permanent-light)
+      border: 1px solid var(--primary)
+      color: var(--primary)
+
+      &:hover
+        border: 1px solid #3b4db4
+        color: #3b4db4
+        
       
       
 

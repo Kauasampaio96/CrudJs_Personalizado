@@ -156,6 +156,17 @@ const closeModal = () => {
 }
 
 
+const clearFields = () => {
+  const fields = document.querySelectorAll('.modal-field')
+
+  console.log(fields.innerHTML)
+
+  fields.forEach(element => {
+    console.log(element)
+    return
+  })
+}
+
 
 
 
@@ -165,3 +176,6 @@ document.getElementById('closebtn')
 
 document.getElementById('createbtn')
         .addEventListener('click', openModal)
+
+document.getElementById('cancelbtn')
+        .addEventListener('click', clearFields)
