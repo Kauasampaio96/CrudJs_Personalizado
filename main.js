@@ -162,7 +162,7 @@ const clearFields = () => {
   console.log(fields.innerHTML)
 
   fields.forEach(element => {
-    console.log(element)
+    element.value = ''
     return
   })
 }
