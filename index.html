@@ -19,7 +19,19 @@
   <!--Font Awesome-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!--Animations-->
+  <!--Mask-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/0.9.0/jquery.mask.min.js" integrity="sha512-oJCa6FS2+zO3EitUSj+xeiEN9UTr+AjqlBZO58OPadb2RfqwxHpjTU8ckIC8F4nKvom7iru2s8Jwdo+Z8zm0Vg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+    $(document).ready(function(){
+      $('#cpf').mask('000.000.000-00')
+      $('#celular').mask('(00) 00000-0000')
+    })
+  </script>
+
+  
 
   <title>Crud Javascript | &copy; Kauã Chaves</title>
 </head>
@@ -80,29 +92,29 @@
 
       <form id="form" class="modal-form">
         <div class="input-box">
-          <input required type="text" id="nome" class="modal-field">
-          <span>Nome do Cliente</span>
+          <input required type="text" oninput="nameValidate()" id="nome" class="modal-field">
+          <span id="nomespan">Nome do Cliente</span>
         </div>
 
         <div class="input-box">
-          <input required type="text" id="cpf" class="modal-field">
-          <span>Cpf do cliente</span>
+          <input required type="text" oninput="cpfValidate()" id="cpf" class="modal-field">
+          <span id="cpfspan">Cpf do cliente</span>
         </div>
 
         <div class="input-box">
-          <input data-index="new" required type="email" id="email" class="modal-field" >
-          <span>E-mail do Cliente</span>
+          <input data-index="new" required maxlength="50" oninput="emailValidate()" type="email" id="email" class="modal-field" >
+          <span id="emailspan">E-mail do Cliente</span>
         </div>
 
         <div class="input-box">
-          <input required type="text" id="celular" class="modal-field">
-          <span>Celular do Cliente</span>
+          <input required type="text" oninput="celularValidate()" id="celular" class="modal-field">
+          <span id="celularspan">Celular do Cliente</span>
         </div>
 
 
         <div class="input-box">
-          <input required type="text" id="cidade" class="modal-field">
-          <span>Endereço do Cliente</span>
+          <input required type="text" oninput="enderecoValidate()" id="endereco" class="modal-field">
+          <span id="enderecospan">Endereço do Cliente</span>
         </div>
 
         <button id="submitbtn" class="formbtn submit-btn" type="submit"><i class="fa-solid fa-check"></i> Salvar</button>
