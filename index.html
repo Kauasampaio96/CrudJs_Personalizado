@@ -27,7 +27,7 @@
   <script>
     $(document).ready(function(){
       $('#cpf').mask('000.000.000-00')
-      $('#celular').mask('(00) 00000-0000')
+      $('#telefone').mask('(00) 00000-0000')
     })
   </script>
 
@@ -49,9 +49,10 @@
           <a class="sidenav-icon" href="index.html"><i class="fa-solid fa-database"></i></a> <a class="linkintext" href="index.html"> <p id="icon-single-text">Banco de Dados</p></a>
         </div>
 
+        <!--
         <div id="icon-single" class="icon-single">
           <a  class="sidenav-icon" href="configurations.html"><i class="fa-solid fa-gear"></i></a> <a class="linkintext" href="configurations.html"> <a class="linkintext" href="configurations.html"> <p id="icon-single-text">Configurações</p></a></a>
-        </div>
+        </div>-->
 
         <div id="icon-single" class="icon-single">
           <a  class="sidenav-icon" href="about.html"><i class="fa-brands fa-dev"></i></a> <a class="linkintext" href="about.html"> <p id="icon-single-text">Sobre o Desenvolvedor</p></a>
@@ -92,12 +93,12 @@
 
       <form id="form" class="modal-form">
         <div class="input-box">
-          <input required type="text" oninput="nameValidate()" id="nome" class="modal-field">
+          <input required type="text" oninput="nomeValidate()" id="nome" class="modal-field">
           <span id="nomespan">Nome do Cliente</span>
         </div>
 
         <div class="input-box">
-          <input required type="text" oninput="cpfValidate()" id="cpf" class="modal-field">
+          <input data-index="new" required type="text" oninput="cpfValidate()" id="cpf" class="modal-field">
           <span id="cpfspan">Cpf do cliente</span>
         </div>
 
@@ -107,8 +108,8 @@
         </div>
 
         <div class="input-box">
-          <input required type="text" oninput="celularValidate()" id="celular" class="modal-field">
-          <span id="celularspan">Celular do Cliente</span>
+          <input required type="text" oninput="telefoneValidate()" id="telefone" class="modal-field">
+          <span id="telefonespan">Celular do Cliente</span>
         </div>
 
 
@@ -127,7 +128,7 @@
 
       <div class="database-box">
         <button id="createbtn" class="create database-btn"> <p>Cadastrar cliente</p> <b><i class="fa-solid fa-plus"></i></b> </button>
-        <table class="database">
+        <table id="database" class="database">
           <thead>
             <tr>
               <th>Nome</th>
@@ -140,26 +141,6 @@
           </thead>
         
           <tbody>
-          
-            <tr>
-              <td data-label="Nome:">Kauã</td>
-              <td data-label="Cpf:">093.041.243-52</td>
-              <td data-label="E-mail:">kauasampaio33@hotmail.com</td>
-              <td data-label="Telefone:">88 996009602</td>
-              <td data-label="Endereço:">Manoel ESTORGIO</td>
-              <td data-label="Ação:"><button type="button" class="edit database-btn" id="edit-${index}">Editar</button>
-                <button type="button" class="delete database-btn" id="delete-${index}">Excluir</button></td>
-            </tr>
-
-            <tr>
-              <td data-label="Nome:">Kauã</td>
-              <td data-label="Cpf:">093.041.243-52</td>
-              <td data-label="E-mail:">kauasampaio33@hotmail.com</td>
-              <td data-label="Telefone:">88 996009602</td>
-              <td data-label="Endereço:">Manoel ESTORGIO</td>
-              <td data-label="Ação:"><button type="button" class="edit database-btn" id="edit-${index}">Editar</button>
-                <button type="button" class="delete database-btn" id="delete-${index}">Excluir</button></td>
-            </tr>
 
           </tbody>
             

@@ -166,18 +166,20 @@ const clearFields = () => {
 
 // Validar Campos
 
-function nameValidate(){
+function nomeValidate(){
   const nome = document.getElementById('nome')
   const nomespan = document.getElementById('nomespan')
   if(nome.value.length > 3){
     nome.style.borderColor = '#4BB543'
     nomespan.style.color = '#4BB543'
     nomespan.style.borderColor = '#4BB543'
+    return true
   }
   else{
     nome.style.borderColor = '#FF9494'
     nomespan.style.color = '#FF9494'
     nomespan.style.borderColor = '#FF9494'
+    return false
   }
 }
 
@@ -234,11 +236,13 @@ function cpfValidate(){
     cpf.style.borderColor = '#4BB543'
     cpfspan.style.color = '#4BB543'
     cpfspan.style.borderColor = '#4BB543'
+    return true
   }
   else{
     cpf.style.borderColor = '#FF9494'
     cpfspan.style.color = '#FF9494'
     cpfspan.style.borderColor = '#FF9494'
+    return false
   }
 }
 
@@ -251,28 +255,32 @@ function emailValidate(){
     email.style.borderColor = '#4BB543'
     emailspan.style.color = '#4BB543'
     emailspan.style.borderColor = '#4BB543'
+    return true
   }
   else{
     email.style.borderColor = '#FF9494'
     emailspan.style.color = '#FF9494'
     emailspan.style.borderColor = '#FF9494'
+    return false
   }
 }
 
 
-function celularValidate(){
-  const celular = document.getElementById('celular')
-  const celularspan = document.getElementById('celularspan')
+function telefoneValidate(){
+  const telefone = document.getElementById('telefone')
+  const telefonespan = document.getElementById('telefonespan')
 
-  if(celular.value.length > 14){ 
-    celular.style.borderColor = '#4BB543'
-    celularspan.style.color = '#4BB543'
-    celularspan.style.borderColor = '#4BB543'
+  if(telefone.value.length > 14){ 
+    telefone.style.borderColor = '#4BB543'
+    telefonespan.style.color = '#4BB543'
+    telefonespan.style.borderColor = '#4BB543'
+    return true
   }
   else{
-    celular.style.borderColor = '#FF9494'
-    celularspan.style.color = '#FF9494'
-    celularspan.style.borderColor = '#FF9494'
+    telefone.style.borderColor = '#FF9494'
+    telefonespan.style.color = '#FF9494'
+    telefonespan.style.borderColor = '#FF9494'
+    return false
   }
 }
 
@@ -284,15 +292,63 @@ function enderecoValidate(){
     endereco.style.borderColor = '#4BB543'
     enderecospan.style.color = '#4BB543'
     enderecospan.style.borderColor = '#4BB543'
+    return true
   }
   else{
     endereco.style.borderColor = '#FF9494'
     enderecospan.style.color = '#FF9494'
     enderecospan.style.borderColor = '#FF9494'
+    return false
   }
 }
 
 
+// Change Language
+
+/* 
+
+var dataEnglish = {
+
+  "configSectionTitle" : "Settings",
+  "IconSingleText0" : "Database"
+
+}
+
+var dataPortugues = {
+
+  "configSectionTitle" : "Configurações"
+
+}
+
+function changeLanguage(){
+  const pEng = document.getElementById('p-eng')
+  const pPtbr = document.getElementById('p-ptbr')
+  const inputSwitchLanguage = document.getElementById('switch-language')
+
+  const configSectionTitle = document.getElementById('configSectionTitle')
+  
+  const IconSingleText = document.querySelectorAll('icon-single-text')
+
+  if(inputSwitchLanguage.checked){
+    pPtbr.style.color = 'var(--permanent-light)'
+    pEng.style.color = 'var(--primary)'
+
+    configSectionTitle.textContent = dataEnglish.configSectionTitle
+
+    IconSingleText[0].textContent = dataEnglish.IconSingleText0
+
+
+  }
+  else{
+    pPtbr.style.color = 'var(--primary)'
+    pEng.style.color = 'var(--permanent-light)'
+
+    configSectionTitle.textContent = dataPortugues.configSectionTitle
+  }
+  
+}
+
+*/
 
 
 
@@ -319,6 +375,96 @@ document.getElementById('cancelbtn')
 
 
 //CRUD 
+
+const getLocalStorage = () => JSON.parse(localStorage.getItem('db_client')) ?? []
+const setLocalStorage = (dbclient) => localStorage.setItem('db_client', JSON.stringify(dbclient))
+
+
+// Create
+
+const createRow = (client, index) => {
+  const newRow = document.createElement('tr')
+  newRow.innerHTML = `
+    <td data-label="Nome:">${client.nome}</td>
+    <td data-label="Cpf:">${client.cpf}</td>
+    <td data-label="E-mail:">${client.email}</td>
+    <td data-label="Telefone:">${client.telefone}</td>
+    <td data-label="Endereço:">${client.endereco}</td>
+    <td data-label="Ação:"><button type="button" class="edit database-btn" id="edit-${index}">Editar</button>
+      <button type="button" class="delete database-btn" id="delete-${index}">Excluir</button></td>
+  `
+  document.querySelector('#database>tbody').appendChild(newRow)
+}
+
+const clearTable = () => {
+  const rows = document.querySelectorAll('#database>tbody tr')
+  rows.forEach(row => row.parentNode.removeChild(row))
+}
+
+const updateTable = () => {
+  const dbClient = getLocalStorage()
+  clearTable()
+  dbClient.forEach(createRow)
+}
+
+const createClient = (client) => {
+  const dbClient = getLocalStorage()
+  dbClient.push(client)
+  setLocalStorage(dbClient)
+}
+
+updateTable()
+
+
+const saveClient = () => {
+
+  if(nomeValidate() && cpfValidate() && emailValidate() && telefoneValidate() && enderecoValidate()){
+    const client = {
+      nome: document.getElementById('nome').value,
+      cpf: document.getElementById('cpf').value,
+      email: document.getElementById('email').value,
+      telefone: document.getElementById('telefone').value,
+      endereco: document.getElementById('endereco').value,
+    }
+
+    const dataIndex = document.getElementById('cpf').dataset.index
+
+    if(getLocalStorage().some(cl => cl.cpf === client.cpf && dataIndex == 'new')){
+      alert('Cpf já cadastrado! &#10060;')
+      clearFields()
+      return
+    }
+
+    if(dataIndex !== 'new' && getLocalStorage().some((cl, index) => cl.cpf === client.cpf && index != dataIndex)){
+      alert('Cpf já cadastrado! &#10060;')
+      return
+    }
+
+    if(dataIndex === 'new'){
+      createClient(client)
+      alert('Cliente Cadastrado com Sucesso! &#9989;')
+      clearFields()
+      updateTable()
+    }
+
+
+  }
+  else {
+    alert('aviso nao foi possivel cadastrar o cliente')
+  }
+
+
+}
+
+
+
+
+
+
+
+
+document.getElementById('submitbtn')
+        .addEventListener('click', saveClient)
 
 
 
