@@ -146,7 +146,8 @@ sidenavButton.addEventListener('click', () => {
 
 
 
-const openModal = () => {
+const openModal = (topValue) => {
+  document.getElementById('modal').style.top = topValue
   document.getElementById('modal').classList.add('active')
 }
 
@@ -350,30 +351,6 @@ function changeLanguage(){
 
 */
 
-
-
-
-
-
-
-
-
-
-
-
-document.getElementById('closebtn')
-        .addEventListener('click', closeModal)
-
-document.getElementById('createbtn')
-        .addEventListener('click', openModal)
-
-document.getElementById('cancelbtn')
-        .addEventListener('click', clearFields)
-
-
-
-
-
 //CRUD 
 
 const getLocalStorage = () => JSON.parse(localStorage.getItem('db_client')) ?? []
@@ -401,19 +378,11 @@ const clearTable = () => {
   rows.forEach(row => row.parentNode.removeChild(row))
 }
 
-const updateTable = () => {
-  const dbClient = getLocalStorage()
-  clearTable()
-  dbClient.forEach(createRow)
-}
-
 const createClient = (client) => {
   const dbClient = getLocalStorage()
   dbClient.push(client)
   setLocalStorage(dbClient)
 }
-
-updateTable()
 
 
 const saveClient = () => {
@@ -429,28 +398,33 @@ const saveClient = () => {
 
     const dataIndex = document.getElementById('cpf').dataset.index
 
+    console.log(client.cpf)
+
     if(getLocalStorage().some(cl => cl.cpf === client.cpf && dataIndex == 'new')){
-      alert('Cpf já cadastrado! &#10060;')
+      showMessage('CPF já cadastrado', 'error')
       clearFields()
       return
     }
 
-    if(dataIndex !== 'new' && getLocalStorage().some((cl, index) => cl.cpf === client.cpf && index != dataIndex)){
-      alert('Cpf já cadastrado! &#10060;')
+    if(getLocalStorage().some(cl => cl.cpf === client.cpf) && dataIndex !== 'new'){
+      showMessage('CPF já pertence a outro cliente', 'error')
       return
     }
 
     if(dataIndex === 'new'){
       createClient(client)
-      alert('Cliente Cadastrado com Sucesso! &#9989;')
+      showMessage('Cliente cadastrado com Sucesso', 'success')
       clearFields()
       updateTable()
     }
+    else{
+      updateClient(dataIndex, client)
+      updateTable()
+      closeModal()
+      showMessage('Cliente Editado com Sucesso', 'success')
+    }
 
 
-  }
-  else {
-    alert('aviso nao foi possivel cadastrar o cliente')
   }
 
 
@@ -460,11 +434,157 @@ const saveClient = () => {
 
 
 
+// Read
+
+const updateTable = () => {
+  const dbClient = getLocalStorage()
+  clearTable()
+  dbClient.forEach(createRow)
+}
 
 
+updateTable()
+
+
+
+
+
+
+
+
+// Update
+
+const updateClient = (index, client) => {
+  const dbClient = getLocalStorage()
+  dbClient[index] = client
+
+  setLocalStorage(dbClient)
+}
+
+const fillFields = (client, indexInArray) => {
+  document.getElementById('nome').value = client.nome
+  document.getElementById('cpf').value = client.cpf
+  document.getElementById('email').value = client.email
+  document.getElementById('telefone').value = client.telefone
+  document.getElementById('endereco').value = client.endereco
+  document.getElementById('cpf').dataset.index = indexInArray
+}
+
+const editClient = (index) => {
+  const client = getLocalStorage()[index]
+  const indexInArray = index
+  fillFields(client, indexInArray)
+  var topValue
+  document.getElementById('modal-type-title').textContent = 'Editar um Cliente'
+
+  if(window.innerWidth < 1110){
+    if(index == 0){
+      topValue = 25
+    }
+    else{
+      topValue = index * 36
+    }
+    openModal(`${topValue}%`)
+  }
+  else{
+    openModal(``)
+  }
+  
+}
+
+const editDelete = (event) => {
+  if(event.target.type == 'button'){
+    
+  
+    const [action, index] = event.target.id.split('-')
+
+    if (action == 'edit'){
+      editClient(index)
+    }
+    else {
+      const client = getLocalStorage()[index]
+      const response = confirm(`Deseja Realmente excluir o cliente ${client.nome}`)
+      if (response){
+        deleteClient(index)
+        updateTable()
+        return
+      }
+      
+    }
+  }
+  
+}
+
+
+// Delete
+
+const deleteClient = (index) => {
+  const dbClient = getLocalStorage()
+  dbClient.splice(index,1)
+
+  setLocalStorage(dbClient)
+
+}
+
+
+// Message Function
+
+const showMessage = (message, typeofmessage) => {
+  const notification = document.querySelector('.notification')
+
+  if (typeofmessage == 'success'){
+    notification.style.backgroundColor = '#58b3525b'
+    notification.style.color = '#4e934a'
+    notification.classList.add('show')
+
+    notification.querySelector('p').textContent = message
+
+    setTimeout(() => {
+      notification.classList.remove('show')
+    }, 6000)
+
+    return
+  }
+
+  if (typeofmessage == 'error'){
+    notification.style.backgroundColor = '#ff33338e'
+    notification.style.color = '#831919'
+    notification.style.borderLeft = '5px solid #831919'
+    notification.classList.add('show')
+
+    notification.querySelector('i').classList.remove('fa-circle-check')
+    notification.querySelector('i').classList.add('fa-circle-exclamation')
+
+    notification.querySelector('p').textContent = message
+
+    setTimeout(() => {
+      notification.classList.remove('show')
+    }, 6000)
+    return
+  }
+}
+
+
+
+// Eventos
+
+document.getElementById('closebtn')
+        .addEventListener('click', closeModal)
+
+document.getElementById('createbtn').addEventListener('click', () => {
+  document.getElementById('modal-type-title').textContent = 'Cadastar um Cliente'
+  clearFields()
+  openModal('25%')
+})
+
+document.getElementById('cancelbtn')
+        .addEventListener('click', clearFields)
 
 document.getElementById('submitbtn')
         .addEventListener('click', saveClient)
+
+document.querySelector('#database>tbody')
+        .addEventListener('click', editDelete)
 
 
 

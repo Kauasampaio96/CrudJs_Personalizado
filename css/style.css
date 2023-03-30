@@ -67,6 +67,7 @@ body {
   justify-content: center;
   height: 100%;
   align-items: center;
+  overflow-x: hidden;
 }
 @media (max-width: 1100px) {
   .main {
@@ -104,7 +105,7 @@ body {
   text-align: center;
   font-size: 36px;
   color: var(--gray);
-  position: fixed;
+  position: sticky;
   left: 35px;
 }
 @media (max-width: 1100px) {
@@ -117,13 +118,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 70px 0 0 0;
+  margin: 50px 0 0 0;
 }
 @media (max-width: 1100px) {
   .main .sidenav .icon-box {
     align-items: flex-start;
     width: 90%;
-    margin: 50px 50px 0 0;
+    margin: 20px 50px 0 0;
   }
 }
 .main .sidenav .icon-box .icon-single {
@@ -468,6 +469,7 @@ body {
   .index.section-box {
     max-width: 550px;
     padding: 15px;
+    margin-top: 50px;
   }
 }
 .index.section-box .database-btn {
@@ -618,7 +620,7 @@ body {
     content: attr(data-label);
     position: absolute;
     left: 0;
-    width: 50%;
+    width: 20%;
     padding-left: 0;
     font-weight: bold;
     text-align: left;
@@ -633,6 +635,56 @@ body {
   .index.section-box .database td:last-child {
     text-align: right;
   }
+}
+
+.notification {
+  width: 350px;
+  height: 50px;
+  position: absolute;
+  right: 50px;
+  top: 10%;
+  background: rgba(255, 51, 51, 0.5568627451);
+  color: #831919;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  padding: 0 10px;
+  border-left: 5px solid #5dcc57;
+  opacity: 0;
+}
+@media (max-width: 1100px) {
+  .notification {
+    z-index: 15;
+    top: 12%;
+    width: 90%;
+    right: 5%;
+    font-size: 1.15rem;
+  }
+  .notification i {
+    font-size: 1.25rem;
+  }
+}
+@keyframes notify {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.show {
+  animation: notify 5s;
+}
+.show .fa-circle-check, .show .fa-circle-exclamation {
+  font-size: 18px;
+  margin-right: 12px;
 }
 
 .active.modal {
@@ -654,6 +706,7 @@ body {
 @media (max-width: 1100px) {
   .modal {
     width: 95%;
+    padding: 25px 20px;
   }
 }
 .modal .fa-xmark {

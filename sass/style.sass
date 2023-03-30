@@ -16,6 +16,7 @@ body
   justify-content: center
   height: 100%
   align-items: center
+  overflow-x: hidden
 
   @include u.responsive
     padding: 150px 0 50px 0
@@ -54,7 +55,7 @@ body
       text-align: center
       font-size: 36px
       color: var(--gray)
-      position: fixed
+      position: sticky
       left: 35px
 
       @include u.responsive
@@ -68,12 +69,12 @@ body
       display: flex
       flex-direction: column
       align-items: center
-      margin: 70px 0 0 0
+      margin: 50px 0 0 0
 
       @include u.responsive 
         align-items: flex-start
         width: 90%
-        margin: 50px 50px 0 0 
+        margin: 20px 50px 0 0 
 
       .icon-single
         margin: 15px 0
@@ -401,6 +402,7 @@ body
   @include u.responsive
     max-width: 550px
     padding: 15px
+    margin-top: 50px
 
   .database-btn
     border: 0
@@ -448,6 +450,7 @@ body
   .edit.database-btn
     margin: 0 5px 0 0
     font-weight: bold
+
 
     @include u.responsive
       margin: 0 10px 0 0 
@@ -541,7 +544,7 @@ body
           content: attr(data-label)
           position: absolute
           left: 0
-          width: 50%
+          width: 20%
           padding-left: 0
           font-weight: bold
           text-align: left
@@ -555,6 +558,61 @@ body
 
         @include u.responsive
           text-align: right
+
+//Notifications
+
+.notification
+  width: 350px
+  height: 50px
+  position: absolute
+  right: 50px
+  top: 10%
+  background: #ff33338e
+  color: #831919
+  display: flex
+  align-items: center
+  border-radius: 5px
+  padding: 0 10px 
+  border-left: 5px solid #5dcc57
+  opacity: 0
+
+  @include u.responsive
+    z-index: 15
+    top: 12%
+    width: 90%
+    right: 5%
+    font-size: 1.150rem
+
+    i
+      font-size: 1.250rem
+
+  
+
+  @keyframes notify
+    0%
+      opacity: 0
+      
+    20%
+      opacity: 1
+
+    95%
+      opacity: 1
+
+    100%
+      opacity: 0
+
+.show
+  animation: notify 5s
+      
+
+  .fa-circle-check, .fa-circle-exclamation
+    font-size: 18px
+    margin-right: 12px
+
+  
+
+
+
 
 //Modal
 
@@ -575,6 +633,7 @@ body
 
   @include u.responsive
     width: 95%
+    padding: 25px 20px
 
   .fa-xmark
     position: absolute
