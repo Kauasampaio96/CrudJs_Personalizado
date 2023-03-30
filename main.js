@@ -404,8 +404,9 @@ const saveClient = () => {
       return
     }
 
-    if(getLocalStorage().some((cl, index) => cl.cpf === client.cpf && dataIndex != index) && dataIndex !== 'new'){
+    if(getLocalStorage().some((cl, index) => cl.cpf === client.cpf && dataIndex != index && dataIndex !== 'new')){
       showMessage('CPF já cadastrado', 'error')
+      clearFields()
       return
     }
 
@@ -501,7 +502,7 @@ const editDelete = (event) => {
     }
     else {
       const client = getLocalStorage()[index]
-      const response = confirm(`Deseja Realmente excluir o cliente ${client.nome}`)
+      const response = confirm(`Deseja Realmente excluir o cliente: ${client.nome}`)
       if (response){
         deleteClient(index)
         updateTable()
