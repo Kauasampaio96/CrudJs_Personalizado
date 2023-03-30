@@ -398,16 +398,14 @@ const saveClient = () => {
 
     const dataIndex = document.getElementById('cpf').dataset.index
 
-    console.log(client.cpf)
-
     if(getLocalStorage().some(cl => cl.cpf === client.cpf && dataIndex == 'new')){
       showMessage('CPF já cadastrado', 'error')
       clearFields()
       return
     }
 
-    if(getLocalStorage().some(cl => cl.cpf === client.cpf) && dataIndex !== 'new'){
-      showMessage('CPF já pertence a outro cliente', 'error')
+    if(getLocalStorage().some((cl, index) => cl.cpf === client.cpf && dataIndex != index) && dataIndex !== 'new'){
+      showMessage('CPF já cadastrado', 'error')
       return
     }
 
